@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Postagens</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">CRUD de Postagens</h1>
+
+    <div class="card p-4 shadow-sm">
+
+        <div class="row g-3">
+
+            <div class="col-md-2">
+                <input type="number" id="postId" class="form-control" placeholder="ID">
+            </div>
+
+            <div class="col-md-5">
+                <input type="text" id="title" class="form-control" placeholder="Título">
+            </div>
+
+            <div class="col-md-5">
+                <input type="text" id="body" class="form-control" placeholder="Conteúdo">
+            </div>
+
+        </div>
+
+        <div class="mt-4 d-flex flex-wrap gap-2">
+            <button class="btn btn-primary" onclick="buscarPostagem()">GET</button>
+            <button class="btn btn-success" onclick="criarPostagem()">POST</button>
+            <button class="btn btn-warning" onclick="atualizarPostagem()">PUT</button>
+            <button class="btn btn-info" onclick="modificarPostagem()">PATCH</button>
+            <button class="btn btn-danger" onclick="removerPostagem()">DELETE</button>
+            <button class="btn btn-dark" onclick="filtrarPostagens()">FILTRAR</button>
+            <button class="btn btn-secondary" onclick="listarPostagens()">LISTAR TODOS</button>
+        </div>
+
+    </div>
+
+    <div class="card mt-4 shadow-sm">
+        <div class="card-body">
+            <h4>Resultado</h4>
+            <pre id="resultado"></pre>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const resultado = document.getElementById('resultado');
+
+function mostrar(dados) {
+    resultado.textContent = JSON.stringify(dados, null, 2);
+}
+
+async function buscarPostagem() {
+
+    const id = document.getElementById('postId').value;
+
+    const resposta = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+</html>
